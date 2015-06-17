@@ -96,12 +96,13 @@ class Omeka_File_Derivative_Strategy_ExternalImageMagick
         $version = $this->getOption('version', '0');
 
         if ($type != 'square_thumbnail') {
-            return '-background white +repage -flatten -thumbnail ' . escapeshellarg("{$constraint}x{$constraint}>");
+            return '-auto-orient -background white +repage -flatten -thumbnail ' . escapeshellarg("{$constraint}x{$constraint}>");
         } else {
             $gravity = $this->getOption('gravity', 'Center');
             // Native square thumbnail resize requires at least version 6.3.8-3.
             if (version_compare($version, '6.3.8-3', '>=')) {
                 $args = array(
+                    '-auto-orient',
                     '-background white',
                     '+repage',
                     '-flatten',
@@ -112,6 +113,7 @@ class Omeka_File_Derivative_Strategy_ExternalImageMagick
                 );
             } else {
                 $args = array(
+                    '-auto-orient',
                     '-thumbnail ' . escapeshellarg('x' . $constraint*2),
                     '-resize ' . escapeshellarg($constraint*2 . 'x<'),
                     '-resize 50%',
