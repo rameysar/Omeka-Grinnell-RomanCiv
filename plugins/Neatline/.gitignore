@@ -1,0 +1,16 @@
+.DS_Store
+node_modules
+bower_components
+vendor
+.grunt
+pkg
+
+_SpecRunner.html
+
+/layers
+!/layers/default.json
+/tests/phpunit/plugins.json
+
+.transifexrc
+views/**/dist/development
+tests/jasmine/dist
